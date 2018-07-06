@@ -1,0 +1,475 @@
+USEFUL WEBSITES FOR NODE DEVELOPMENT
+1. www.nodejs.org: Official node webiste
+
+2. www.npmjs.com: For 3rd party modules
+
+3. www.expressjs.com
+
+4. www.handlebarsjs.com
+
+5. www.mochajs.com
+
+6 https://github.com/mjackson/expect   \\Testing Assertion Library
+
+7. https://github.com/visionmedia/supertest   \\Testing Express requests
+
+8. www.mongodb.com
+
+9. https://robomongo.org   \\For graphical user interface of mongo database
+
+10. https://github.com/mongodb/node-mongodb-native  \\Mongodb node native library
+
+11. wwww.mongoosejs.com
+
+12. www.getpostman.com
+
+13. https://jwt.io
+
+14. https://momentjs.com     \\ timestamp library
+
+
+
+
+
+CHANGES FROM JAVASCRIPT
+1. window object of javascript becomes global in node.
+
+2. document object of javascript becomes process in node.
+
+
+
+
+
+MODULES INSIDE NODE
+1. use require function that takes one string to load in built-in modules and also third party modules.
+
+2. use module.exports object to export file to another file.
+
+3. use path module to convert paths.
+
+
+
+
+USEFUL NODE 3RD PARTY MODULES
+1. lodash
+
+2. yargs: for parsing the command line arguments
+
+3. use request to make callback based http requests.
+
+4. use axios to make promise based http requests.
+
+5. use hbs for express.js template engine plugin for handlebars.
+
+6. use rewire to swap out variable for test.
+
+7. use body-parser to send json to server.
+
+8. validator: to validate input values like email, phone number etc
+
+9. crypto-js: inculdes all sorts of encryption and hasing algorithms
+
+10. jsonwebtoken: is library used for hashing and salting to make it easier
+
+11. bcryptjs: bcrypt library
+
+
+
+
+
+NODE COMMANDS
+1. use process.argv to get command line argument vector or argument array(javascript format).
+
+2. use debug command inside terminal to debug node codes.
+   eg: node debug app.js
+
+3. use JSON.stringify to pretty print your javascript object.
+   eg: JSON.stringify(body, undefined, 2);
+
+4. use encodeURIComponent() to encode string into url passable string.
+   use decodeURIComponent() to decode that encoded string.
+
+
+
+
+
+EXPRESS COMMANDS
+1. Express.js
+   var app = express();
+   app.use(express.static(__dirname + '/public'));   \\Middleware
+   app.get('/', (req, res) => {
+    res.send('Hello World');
+   });
+   app.listen(3000);
+
+2. app.use to insert static webpages, images, scripts etc.
+   eg: app.use(express.static(__dirname + '/public'));
+
+3. to use partials use registerPartials method of hbs.
+   eg: hbs.registerPartials(__dirname + '/views/partials');
+
+4. to set hbs template engine use 'use' method of express.
+   eg: app.use(express.static(__dirname + '/public'));
+
+5. to use helpers use registerHelper method of hbs for running some javascript code.
+   eg: hbs.registerHelper('getCurrentYear', () => new Date().getFullYear());
+
+6. if express middleware is used then next() function should be called at the end. If next() is not called then next requests will not work. for eg. When we want to display a maintaince page. 
+
+7. use patch() method for route when you want to update a resource.
+   app.patch('/todos/:id', (req, res) => {});
+
+8. use delete() method for route when you want to delete a resource.
+   app.delete('todos/:id', (req, res) => {});
+
+
+
+
+TESTING NODE APPS
+1. use it() method of mocha.js to start a testing which takes two arguments. And use expect library to make assertions.
+   eg: it('should add two numbers', () => {
+       var res = utils.add(33, 11);
+       expect(res).toBe(44).toBeA('number');
+       });
+
+2. to test asynchronous code chain expect assetion inside a callback function and pass done argument in the 2nd parameter of mocha testing it method.
+   eg: module.exports.asyncAdd = (a, b, callback) => {
+       setTimeout(() => {
+       callback(a + b);
+       }, 1000);
+       }; 
+
+
+       it('should async add two numbers', (done) => {
+       utils.asyncAdd(4, 3, (sum) => {
+       expect(sum).toBe(7).toBeA('number');
+       done();
+       });
+       });
+
+3. to test express requests use supertest library.
+   eg: app.get('/user', (req, res) => {
+         res.status(200).json({name: 'tobi'});
+       });
+
+       request(app)
+          .get('/user')
+          .expect('Content-Type', /json/)
+          .expect('Content-Length', '15')
+          .expect(200)
+          .end((err, res) {
+            if (err) throw err;
+          });
+
+   implementation in mocha testing of supertest looks like this:
+   it('should return hello world response', (done) => {
+   request(app)
+    .get('/')
+    .expect('Hello World!')
+    .end(done);
+   });
+
+4. to group tests together use describe() function of mocha. describe takes two arguments, 1st a string for describing the block and 2nd is the function in which all tests are done.
+   eg: describe('Utils', () => { \\Tests });
+
+5. to create a delete route use app.delete() method.
+
+
+
+
+
+NOSQL VOCABULARY
+1. In SQL database we have Table like structure and in NoSQL we have Array like structure which is called as Collection.
+
+2. In SQL a individual user is called as Row/Record and in NoSQL individual user is called as Document.
+
+3. In SQL property is called as Column and in NoSQL it is called as Field. In SQL all property must be same but in NoSQL property can be diffrent  because it's not schema based like SQL.
+
+
+
+
+
+MONGODB
+1. to start mongo use command ./mongod --dbpath ~/mongo-data from the mongo bin folder.
+
+2. to connect to mongo server running use the command ./mongo
+
+3. to create a new record use db.*Todos.insert({text: 'Film new node course'})
+
+4. to find all record in mongodb use command db.*Todos.find()
+
+5. use connect() method of MongoClient which comes from mongodb native library to connect to Database. It takes two argument 1st is a string in which url is specified and 2nd is a callback function in which we can do anything 
+   after connection is eastablished to that url.
+   eg: MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
+       if (err) {
+        return console.log('Unable to connect to mongodb server.');
+       }
+       console.log('Connected to mongodb server.');
+
+       db.close();
+       });
+
+6. use db.close() to close the connection with mongodb server.
+
+7. use db.collection() method to create a collection and use insertOne() method to insert data into that collection.
+   eg: db.collection('Todos').insertOne({
+       text: 'Something to do',
+       completed: false
+       }, (err, result) => {
+         if (err) {
+            return console.log('Unable to insert Todo', err)
+         }
+         console.log(JSON.stringify(result.ops undefined, 2));
+       });
+
+8. id field consist of 12 byte value, first 4 bytes are timestamp that shows the moment at time id was created, next 3 bytes are machine identifier, next 2 bytes is process id, last 3 are 3 byte counter.
+
+9. to extract the timestamp from the id use getTimestamp() function on id.
+   eg: console.log(result.ops[0]._id.getTimestamp());
+
+10. use object destructing to pull out property from an object creating variables of same name.
+    eg: var user = {name: 'shubham', age: 24};
+        var {name} = user;   \\ Destructred the property into a variable
+
+11. use ObjectID constructor function of mongodb library to create object id on the fly i.e. even when we are not using mongo database we can use id to uniquely identify things.
+
+12. use find() method of db.collection() to find all documents, it returns a cursor not actual document to get actual document we use one of the many provided mehtod of cursor i.e. toArray() then we can pass a promise.
+    eg: db.collection('Todos').find({completed: true}).toArray().then((docs) => {
+        console.log(JSON.stringify(docs, undefined, 2));
+        }, (err) => {
+        console.log('Unable to fetch todos', err);
+        });
+
+     eg: find({_id: new ObjectID('*5b2c9fbbf5996d32ab205c54')})  \\Find By Id
+
+13. to delete all documents matching the query field use deleteMany() method.
+
+14. to delete first document that matches the query string use deleteOne() method.
+
+15. to delete and as well as return that which document got deleted use findOneAndDelete() method.
+
+16. to update and as well as return the updated document use findOneAndUpdate() mehtod. It takes four arguments but last argument ie. callback can be dropped for the sake of promise. Use mongodb update operators for the 2nd argument. 
+    use options given in mongodb update operator documentation for the 3rd argument.
+
+17. use NODE_ENV variable to use diffent environments for mongodb database like production, development,test.
+    eg: process.env.NODE_ENV = 'test';
+
+
+
+
+
+MONGOOSE
+1. to connect mongoose use connect() method of mongoose.
+   eg: mongoose.connect('mongodb://localhost:27017/TodoApp');
+
+2. to let mongoose use default promise set it equal to global promise object.
+   eg: mongoose.Promise = global.Promise; 
+
+3. to create a mongoose model use model() method which takes two argument. It sets the property of the database model.
+   eg: var Todo = mongoose.model('Todo', {
+         text: {
+           type: String
+         },
+         completed: {
+           type: Boolean
+         },
+         completedAt: {
+           type: Number
+         }
+       });
+
+3. to create a new instance of a model.
+   eg: var newTodo = new Todo({
+         text: 'Cook dinner'
+       });
+
+4. creating a new instance of model alone doesn't update mongodb database, we need to save it and we can do that by calling save() on that model instance.
+   eg: newTodo.save().then((doc) => {
+         console.log('Saved todo', doc);
+       }, (e) => {
+         console.log('Unable to save todo');
+       });
+
+5. mongoose alternate querying method apart from mongodb find() method are findOne() and findById() method. You get back object rather than array of objects from find() method.
+   eg: Todo.findOne({
+       _id: id
+       }).then((todo) => {
+        console.log('Todo', todo);
+       });
+
+       Todo.findById(id).then((todo) => {
+        console.log('Todo by id', todo);
+       });
+
+6. to validate id use isvalid() method of ObjectID.
+   eg: if (!ObjectID.isValid(id)) {
+        console.log('ID not valid');
+       }
+
+7. to create a dynamic url to get id and send it on req body use :id after /. It makes a variable id which value we can get from req.params it's like a object with id as a key and it's value as specified in url when requesting.
+   eg: app.get('/todos/:id', (req, res) => {
+         res.send(req.params);  \\ returns id: "123" when specified url localhost:3000/todos/123 
+       });
+
+8. to return id object as string use toHexString() method.
+   eg: request(app)
+       .get(`/todos/${todos[0]._id.toHexString()}`)
+
+9. to remove any collection we have three methods remove(), findOneAndRemove(), findByIdAndRemove().
+   eg: Todo.remove({}).then((result) => {});
+  
+       Todo.FindOneAndRemove({text: 'Something to do'}).then((todo) => {});
+
+       Todo.findByIdAndRemove('5b30ddb16d02517b3feafa5e').then((todo) => {});
+
+
+
+
+
+REST API
+1. use lifecycle method beforeEach() to clean database before each post request.
+   eg: beforeEach(() => {
+         Todo.remove({}).then(() => done());
+       });
+
+2. use process.env.port to setup server on heroku.
+   eg: const port = process.env.PORT || 3000;
+       app.listen(port, () => {
+        console.log('Started on port ${port}');
+       });
+
+   and in mongoose.js file
+   eg: mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/TodoApp');
+
+3. use pick() method of lodash to create an object composed of the picked object properties. ie. the properties you want to allow users to update. It takes two arguments 1st is the object from where you want to pick property and 2nd is the array of properties you want to pick.
+   eg: var body = _.pick(req.body, ['text', 'completed']);
+
+
+
+
+SECURITY AND AUTHENTICATION
+1. use SHA256 function of crypto-js module to hash any string. It returns a object, to convert it into string use toString() method.
+   eg: var message = 'I am a user number 3';
+       var hash = SHA256(message).toString();
+       console.log(`Message: ${message}`);
+       console.log(`Hash: ${hash}`);     \\ output: 9da4d19e100809d42da806c2b7df5cf37e72623d42f1669eb112e23f5c9d45a3
+
+2. hashing is a one-way algorithm means you can hash a string but you cannot unhash it.
+
+3. salting the hash means adding some you add something onto the hash that is unique that changes the hash value.
+   eg: var token = {
+          id: 4,
+          hash: SHA256(JSON.stringify(data) + 'somesecret').toString()           \\ somesecret is the salt that changes hashed value.
+       }
+
+       var resultHash = SHA256(JSON.stringify(token.data) + 'somesecret').toString();             \\ somesecret is the salt that changes hashed value.
+
+       if (resultHash === toke.hash) {
+          console.log('Data is not changed');
+       } else {
+          console.log('Data is changed don't trust');
+       }
+
+3. the above two methods are included in jsonwebtoken(JWT) library. It inculdes two methods .sign() and .verify() method.
+
+4. to create a token use two methods, model method and instance method. on instance method we use generateAuthToken method to generate authentication token for individual user. and on model method we use dinfByToken() method to get token and find the user.
+
+5. to create custom method on a model make a new instance of mongoose.Schema property which takes an object.
+
+6. to send token as header back use res.header('x-auth', token).send(user) where x-auth is a custom header which will be set to token.
+
+7. to hash passwords use Bcrypt algorithm, it has salting inbuilt. It has three methods, genSalt() to generate a salt in password and hash() method to hash the password and compare() method to compare plain password to hashed password.
+   eg: bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+         console.log(hash);
+         });
+       });
+
+       bcrypt.compare(password, hashedPassword, (err, res) => {
+        console.log(res);
+       });
+          
+8. use mongoose middleware to run code before or after certain events.
+
+9 to wait for all promises to complete use Promise.all() method which takes a an array of promises.
+  eg: Promise.all([userOne, userTwo]).then(() => {})
+
+
+
+SOCKET.IO
+1. use path.join() method of path module to create a relative path.
+   eg: const publicPath = path.join(__dirname, '../public');
+       console.log(publicPath)      \\  /home/shubh/Development/node-projects2/node-chat-app/public
+
+2. socket.io is a library to create web sockets. It has backend and frontend library both.
+
+3. to create a server for socket.io use http module of node.
+   eg: var server = http.createServer(app);         \\ Here app is the express instance bcoz express actually works and well integrated on http module
+
+4. to get back web server of socket create an instance of socket.io
+   eg: var io = socketIO(server);
+
+5. to open a route of socket.io javascript library use socket.io/socket.io.js url that gets created after connecting socket.io to server. then use this in html file to load the connection.
+   eg: type in browser:   localhost:3000/socket.io/socket.io.js
+       in html file: <script src="/socket.io/socket.io.js"></script>  
+
+6. to send the data and get back data from server load the socket.io into the html file by creating an instance of it
+   eg: <script>
+       var socket = io();
+       </script>
+
+7. to register an event use on() method of io in server.js file and of socket in html file.
+   eg: io.on('connection', (socket) => {
+          console.log('New user connected');
+       }); 
+
+       socket.io('connect', () => {
+        console.log('Connected to server');
+       });
+
+8. to create a new event use emit() method.
+   eg: socket.emit('newMessage', {
+        from: 'user@example.com'
+        text: 'Hello, how are you?',
+        createdAt: new Date().getDay()
+       });
+
+9. socket.emit() emits the message to a single user whereas io.emit() emits the message to all users.
+
+10. to broadcast the message to all users but not that socket itself use boadcast method.
+    socket.broadcast.emit('newMessage', {
+     from: 'shubh@example.com',
+     text: 'This is broadcast message',
+     createdAt: new Date().getTime()
+    });
+
+11. use event acknowledgement in a form of callback when client send some data to server or vice-versa, it acknowledges back the client wheather the data was valid or it has some error. It should be done on both emitter and listener.
+
+12. auto-scrolling function
+    eg: function scrollToBottom () {
+          \\Selectors
+          var messages = jQuery('#messages');
+          var newMessage = messages.children('li:last-child');
+          \\Heights
+          var clientHeight = messages.prop('clientHeight');
+          var scrollTop = messages.prop('scrollTop');
+          var scrollHeight = messages.prop('scrollHeight');
+          var newMessageHeight = newMessage.innerHeight();
+          var lastMessageHeight = newMessage.prev().innerHeight();
+
+          if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+           messages.scrollTop(scrollHeight);
+          }
+        }
+
+13. query parameters are accessible via location global object. to access it use window.location.search
+
+14. to emit join page use socket.emit('join', params, funtion() {});
+
+HEROKU COMMANDS
+1. heroku create     \\ to create an app
+
+2. git push heroku master  \\ to push code and build on heroku
+
+3. heroku open   \\ to open heroku app
+

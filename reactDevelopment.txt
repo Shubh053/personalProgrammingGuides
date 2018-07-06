@@ -1,0 +1,64 @@
+React important tips and tricks:
+
+1. undefined, null and boolean values are ignored by JSX and are not rendered in browser.
+
+2. ReactDOM.render(componentToRender, targetNode) to render jsx into html dom.
+
+3. use deafultProps to define default props.
+   eg: MyComponent.defaultProps = { quantity: 0 }
+
+4. use PropTypes to define the props you expect. 
+   eg: MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+
+5. Note that if you make a component stateful, no other components are aware of its state. Its state is completely     encapsulated, or local to that component, unless you pass state data to a child component as props. This notion of encapsulated state is very important because it allows you to write certain logic, then have that logic contained and isolated in one place in your code.
+
+6. Hyphenated words like font-size are invalid syntax for JavaScript object properties, so React uses camel case. As a rule, any hyphenated style properties are written using camel case in JSX.
+
+7. use && for more concise conditional.
+   syntax: {condition && <p>markup</p>}
+
+Lifecycle methods
+1. componentWillMount()
+
+2. componentDidMount(): This is the best place to add API calls and also to attach any event listeners.
+
+3. componentWillReceiveProps()
+
+4. shouldComponentUpdate()
+
+5. componentWillUpdate()
+
+6. componentDidUpdate()
+
+7. componentWillUnmount()
+
+
+
+Redux
+1. Redux is a state management framework. In redux, there ia s single state object that's responsible for the entire state of your application. This means if you had a React app with ten components and each component had its own local state, the entire state of your app would be defined by single state object housed in the Redux store.
+
+2. Use createStore() method of Redux object to create store and pass reducer function as a argument.
+
+3. Use getState() method of Redux object to get current state held in the Redux store object.
+
+4. An action is simply a JavaScript object that contains information about an action event that has occurred. The Redux store receives these action objects, then updates its state accordingly. Sometimes a Redux action also carries some data. For example, the action carries a username after a user logs in. While the data is optional, actions must carry a type property that specifies the 'type' of action that occurred.
+
+5. dispatch method is used to dispatch actions to the Redux store.  Calling store.dispatch() and passing the value returned from an action creator sends an action back to the store.
+
+6. Another key principle in Redux is that state is read-only. In other words, the reducer function must always return a new copy of state and never modify state directly. 
+
+7. A common practice when working with Redux is to assign action types as read-only constants, then reference these constants wherever they are used.
+
+8. store.subscribe() allows you to subscribe listener functions to the store which are called whenever an action is dispatched against the store.
+
+9. Use Redux.combineReducers() method to combine multiple reducers together. This method accepts an object as an argument in which you define properties which associate keys to specific reducer functions. The name you give to the keys will be used by Redux as the name for the associated piece of state.
+
+
+React-Redux
+1. use mapStateToProps() method to map state to any component of React props.
+
+2. use mapDispatchToProps() method to map any dispatch call to component as props.
+
+3. use connect() method to connect state and dispatch to the props of one of your React components. This take optional two arguments: mapStateToProps() and mapDispatchToProps(). If you want to omit any argument you pass null in it's place.
+   syntax: const connect = ReactRedux.connect;
+           connect(mapStateToProps, mapDispatchToProps) (MyComponent);

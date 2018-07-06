@@ -1,0 +1,294 @@
+DataType of Javascript
+-undefined
+-null
+-boolean
+-string
+-number
+-object
+-symbol
+
+
+
+Manipulating Array
+- Access array data using bracket notation. eg: array[2]
+
+- Append data at the end of array using push() function. eg: arr.push(4)
+
+- Remove last data of array using pop() function and returning it. eg: arr.pop()
+
+- Remove first element of array using shift() function, eg: arr.shift()
+
+- Add element infront of an array using unshift() function. eg: arr.unshift("Hello")
+
+- It modifies array by removing element from any position using splice() method, The first parameter is the start index and the 2nd parameter is the number of element to modify. eg:arr.splice(0, 2)
+  Note: It can take 3rd argument to add element to the element position which are removed. eg: arr.splice(0, 2, "Hello")
+
+- To copy or extract element of an array to a new array we use slice() method, The first parameter is the start index and 2nd parameter is the stop index(excluding). eg: let newArray = arr.slice(1, 3) 
+
+
+
+String
+- Bracket notation to get a character of a string. eg: firstname[0]
+
+- String individual characters are immutable but whole value can be changed.
+
+
+
+Object
+- use delete method to delete properties of object. eg: delete myDog.tails
+
+- testing object for properties existance using .hasOwnProperty(propname) method. eg: myObj.hasOwnProperty("top")
+
+
+
+Misc Functions
+- Math.random() function generates a random decimal number between 0(inclusive) and 1(exclusive).
+
+- Math.floor() function rounds the number tp its nearest whole number.
+
+- parseInt(string, radix) function parses a string and returns an integer. eg: parseInt("007") || parseInt("11", 2)
+
+- Object.freeze(objName) function is used to prevent data mutation.
+
+
+
+ES6 Features
+- Arrow functions
+- Classes
+- Modules
+- Promises
+- Generators
+- let and const
+- Default function parameters
+- promises
+
+- spread operator allows us to expand arrays and other expressions in places where multiple parameters or elements are expected. eg: ...
+
+- rest operator for function parameters. eg: (...args) => {}
+
+- Destructuring assignment to assign variables from objects. eg: const { x : a, y : b, z : c } = voxel // a = 3.6, b = 7.4, c = 6.54
+
+- create strings using Template Literals. eg: ${person.age}
+
+- import
+- export
+
+- import * eg: import * as object_with_name_of_your_choice from "file_path_goes_here"
+object_with_name_of_your_choice.imported_function
+
+- export default function add(x,y) {
+return x + y;
+}.    Note: you cannot use export default with var, let, or const
+
+- import default syntax: import add from "math_functions";
+add(5,4); //Will return 9 Note: the imported value, add, is not surrounded by curly braces, {}
+
+- promise can resolve only one thing either resolve or reject and only once.
+  eg: var somePromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+         resolve('Hey, it worked');
+         reject('Unable to fulfill promise');
+        }, 2500);
+      });
+
+      somePromise.then((message) => {
+        console.log('Success: ', message);
+      }, (errorMessage) => {
+        console.log('Error: ', errorMessage);
+      });
+
+
+Higher Order Functions
+- filter()
+- map(): map method is a way to iterate over each item in an array. It creates a new array (without changing the original one) after applying a callback function to every element.
+  eg: var rating = watchList.map((item) => ({title: item.Title, rating: item.imdbRating}));
+- reduce()
+- sort()
+- forEach()
+
+
+
+Regular Expressions
+- using the Test method. 
+  syntax: .test()
+  eg: let testRegex = /Code/;
+      testRegex.test("freeCodeCamp");
+
+- extract matching strings using Match method.
+  syntax: .match()
+  eg: "Hello, World!".match(/Hello/)
+
+- replace text in a string using Replace method.
+  syntax: .replace()
+  eg: "The sky is silver".replace(/silver/, "blue")
+
+- match a literal string with diffrent possibilties using | operator.
+  syntax: /yes|no/
+
+
+
+Regular Expressions Flags
+- ignore case while matching using the i flag.
+  eg: /ignorecase/i
+
+- match more than one outcomes using the g flag.
+  eg: /moreoutcomes/g
+
+- wildcard character.
+  syntax: .
+  eg: "I'll hum a song".match(/hu./)
+
+-  Character classes allow you to define a group of characters you wish to match by placing them inside square ([ and ]) brackets.
+  eg: /b[aiu]g/    // returns big, bag, bug
+
+- character sets can also be used to define range using a hyphen character.
+  syntax: /[a-e]/
+          /[a-z0-9]/ig
+
+- Negated character set uses ^ character to exclude the matching string.
+  syntax: /[^aeiou]/g 
+
+- Match characters that occur one or more time using + character.
+  eg: "aabc".match(/a+/g)
+
+- greedy match finds the longest possible part of a string that fits the regex pattern and it's the default behaviour of regular expressions.
+  lazy matching finds the smallest possible part of the string that satisfy the regex pattern. It uses ? character.
+
+- match beginning string patterns using ^ character.
+  eg: /^Ricky/.test("Ricky is first")
+
+- match ending string patterns using $ character.
+  eg: /story$/.test("Never ending story")
+
+- quantity specifiers are used with {},you can specify the lower and upper number of patterns with quantity specifiers.
+  eg: /a{3,5}h/.test("aaaah")
+
+- specify the possible existence of an element with a ? you can think of this symbol as saying the previous element is optional.
+  eg: let american = "color";
+let british = "colour";
+let rainbowRegex= /colou?r/;
+rainbowRegex.test(american); // Returns true
+rainbowRegex.test(british); // Returns true
+
+- lookahead: positive- ?=
+             negative ?!
+
+
+Regular Expression Shortcuts
+- match alphanumerics [A-Za-z0-9_] using \w.
+
+-match non-alphanumerics[^A-Za-z0-9_] using \W.
+
+- match digits[0-9] using \d.
+
+- match non-digits[^0-9] using \D.
+
+- match whitespace or spaces between letters using \s.
+
+- match non-whitespace using \S.
+
+
+
+Object Oriented Programming
+- use instanceof operator to check whether the object was created with the constructor.
+  eg: myHouse instanceof House;
+  - constructor property can be also used for this purpose but constructor can be overwritten so it's better to use instanceof.
+    eg: myHouse.constructor === House
+
+- prototype is an object that is shared among ALL instance of contructor function.
+  eg: Bird.prototype.numLegs = 2;
+
+- There is one crucial side effect of manually setting the prototype to a new object. It erased the constructor property! The code in the previous challenge would print the following for duck:
+
+console.log(duck.constructor)
+// prints ‘undefined’ - Oops!
+To fix this, whenever a prototype is manually set to a new object, remember to define the constructor property:
+
+Bird.prototype = {
+  constructor: Bird, // define the constructor property
+  numLegs: 2,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name); 
+  }
+};
+
+- Object.create(obj) creates a new object, and sets obj as the new object's prototype. This is to use inheritance.
+
+- mixin: For unrelated objects, it's better to use mixins. A mixin allows other objects to use a collection of functions.
+
+let flyMixin = function(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+The flyMixin takes any object and gives it the fly method.
+
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let plane = {
+  model: "777",
+  numPassengers: 524
+};
+
+flyMixin(bird);
+flyMixin(plane);
+Here bird and plane are passed into flyMixin, which then assigns the fly function to each object. Now bird and plane can both fly:
+
+bird.fly(); // prints "Flying, wooosh!"
+plane.fly(); // prints "Flying, wooosh!"
+
+- use closure to protect properties within an object from being modified externally.
+
+- Immediately invoked function expression(IIFE).
+  eg: (function () {
+  console.log("Chirp, chirp!");
+})(); // this is an anonymous function expression that executes right away
+// Outputs "Chirp, chirp!" immediately
+
+
+
+Functional Programming
+- Functional programming is a style of programming where solutions are simple, isolated functions, without any side effects outside of the function scope.
+
+INPUT -> PROCESS -> OUTPUT
+
+Functional programming is about:
+
+1) Isolated functions - there is no dependence on the state of the program, which includes global variables that are subject to change
+
+2) Pure functions - the same input always gives the same output
+
+3) Functions with limited side effects - any changes, or mutations, to the state of the program outside the function are carefully controlled.
+
+- Callbacks are the functions that are slipped or passed into another function to decide the invocation of that function. You may have seen them passed to other methods, for example in filter, the callback function tells JavaScript the criteria for how to filter an array.
+
+- Functions that can be assigned to a variable, passed into another function, or returned from another function just like any other normal value, are called first class functions. In JavaScript, all functions are first class functions.
+
+- The functions that take a function as an argument, or return a function as a return value are called higher order functions.
+
+- When the functions are passed in to another function or returned from another function, then those functions which gets passed in or returned can be called a lambda.
+
+- The reduce method allows for more general forms of array processing, and it's possible to show that both filter and map can be derived as a special application of reduce.
+
+- A side effect of the sort method is that it changes the order of the elements in the original array.
+
+- The every method works with arrays to check if every element passes a particular test. It returns a Boolean value - true if all values meet the criteria, false if not.
+  eg: var numbers = [1, 5, 8, 0, 10, 11];
+numbers.every(function(currentValue) {
+  return currentValue < 10;
+});
+// Returns false
+
+- The some method works with arrays to check if any element passes a particular test. It returns a Boolean value - true if any of the values meet the criteria, false if not.
+
+- The arity of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1.
+
+In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
+
+

@@ -1,0 +1,126 @@
+D3 METHODS
+1. select() method selects one element from the document.It takes an argument for the name of the element you want and returns an HTML node for the first element in the document that matches the name.
+   eg: const anchor = d3.select("a");
+
+2. selectAll() method selects a group of elements.It returns an array of HTML nodes.
+   eg: const anchors = d3.selectAll("a");
+
+3. append() mehtod takes an argument for the element you want to add to the doucment. It appends an HTML node to a selected item, and returns a handle to that node.
+   eg: d3.select("ul")
+         .append("li")
+
+4. text() method either sets the text of the selected node, or gets the current text. It can take string or callback function as argument.
+   eg: d3.select("ul")
+         .append("li")
+         .text("Very important item.")
+
+5. style() method add inline CSS styles on dynamic elements. This method takes a comma-seperated key-value pair as an argument. It can also take callback function to change the styling for different elements.
+   eg: d3.select("ul")
+         .append("li")
+         .text("Very important item.") 
+         .style("color", "blue");
+
+6. attr() methods works the same way that style() does. It is used to add any HTML attribute to an element,including class name.
+   eg:  d3.select("ul")
+         .append("li")
+         .text("Very important item.")
+         .attr("class", "bar")
+
+7. scaleLinear() is a linear scale method. By default, a scale uses the identity relationship. The value of the input is the same as the value of output.
+   eg: const scale = d3.scaleLinear();
+       const output = scale(50)
+
+   Say a data set has values ranging from 50 to 480. This is the input information for a scale, and is also known as the domain.
+
+   You want to map those points along the x axis on the SVG canvas, between 10 units and 500 units. This is the output information, which is also known as the range.
+
+   The domain() and range() methods set these values for the scale. Both methods take an array of at least two elements as an argument.
+
+   eg: scale.domain([50,480)]
+       scale.range([10,500])
+
+
+8. min() and max() is used to find minimum and maximum values within the data set. Both method takes callback function.
+   eg: const locationData = [[1, 7],[6, 3],[8, 3]];
+      // Returns the smallest number out of the first elements
+      const minX = d3.min(locationData, (d) => d[0]);
+     // minX compared 1, 6, and 8 and is set to 1
+
+9. axisLeft() and axisBottom() method is used to render the y and x axes respectively.
+   eg: const xAxis = d3.axisbottom(xScale);
+
+
+
+DATA VISUALIZATION WITH D3
+The D3 library focuses on a data-driven approach. When you have a set of data, you can apply D3 methods to display it on the page. Data comes in many formats.
+
+1. The first step is to make D3 aware of the data. The data() method is used on a selection of DOM elements to attach the data to those elements. The data set is passed as an argument to the method.
+   eg: const dataset = ["a", "b", "c"];
+       d3.select("ul").selectAll("li")
+         .data(dataset)
+
+2. The second method is to create a new element in the document for each piece of data in the set.
+   eg: const dataset = ["a", "b", "c"];
+       d3.select("ul").selectAll("li")
+         .data(dataset)
+         .enter()
+         .append("li")
+         .text("New Item.")
+
+3. To turn svg bar upside down we need both total height of the SVG are and the height of the bar and set the y attribute of rect to: y = heightOfSVG - heightOfBar
+
+4. To add a tooltip to a visualization use SVG title element.
+   eg: .append("title")
+       .text((d) => d)
+
+5. circle in SVG has three main attributes(cx, cy, r).
+
+6. use g element to render axis on the SVG canvas. g stands for group.
+
+7. use transform attribute to position the axis on the SVG canvas. Positioning an axes needs translate.
+   eg: const xAxis = d3.axisBottom(xScale);
+
+       svg.append("g")
+      .attr("transform", "translate(0, " + (h - padding) + ")")
+      .call(xAxis);
+
+
+
+
+
+
+Important Notes
+1. Multiplying each data point by the same constant only alters the scale. It's like zooming in, and it doesn't change the meaning of the underlying data.
+
+2. Width and height attributes do not have units. This is the building block of scaling - the element will always have a 5:1 width to height ratio, no matter what the zoom level is.
+   eg: const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+       const w = 500;
+       const h = 100;
+    
+       const svg = d3.select("body")
+                     .append("svg")
+                     .attr("width", w)
+                     .attr("height", h)
+
+3. When you place a shape into the svg area, you can specify where it goes with x and y coordinates. The origin point of (0, 0) is in the upper-left corner. Positive vales for x push the shape to the right, and positive values for y push the shape down from the origin point.
+
+4. The callback function takes two arguments, one for the data point itself (usually d) and one for the index of the data point in the array. The second argument for the index is optional.
+   format: selection.attr("property", (d, i) => {
+           /* 
+           * d is the data point value
+           * i is the index of the data point in the array
+           */
+           })
+
+5. In SVG, a rect shape is colored with the fill attribute.
+   eg: .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       .attr("fill", "navy")
+
+6. D3 can plot 3D arrays.
