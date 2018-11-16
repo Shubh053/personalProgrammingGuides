@@ -1,0 +1,415 @@
+NOTES
+------
+1. == => means content comparison and is ==> means reference comparison.
+2. chr(unicode) ==> character and ord(char) ==> unicode
+3. list cannot be used as key for dictionary but tuple can be used as a key.
+
+
+INTRODUCTION TO PYTHON
+-----------------------
+1. Python was developed by Guido Van Rossam in 1989 in National Institute Of Research in Neitherland.
+2. Python officially released in 20th Feb 1991.
+3. Python is named after Monty Python's Circus show in BBC.
+4. Procedural or functional programming is picked by C language.
+5. OOP programming is picked by C++ language.
+6. Scripting programming is picked by Pearl and Shell.
+7. Modular programming is picked by Modula-3.
+8. Python syntax is inspired by C and ABC language.
+
+
+
+FEATURES OF PYTHON
+-------------------
+1. Simple and easy to learn
+2. Free to use and open source
+3. High level programming language
+4. Platform independent
+5. Portability
+6. Dynamically typed language
+7. Procedural and Object Oriented language
+8. Interpreted
+9. Extensible
+10. Embedded
+11. Extensive library
+
+
+
+LIMITATIONS OF PYTHON
+----------------------
+1. Performance
+2. Mobile applications
+
+
+
+FLAVORS OF PYTHON
+------------------
+1. CPython (Standard version) - to work with c language
+2. Jython or JPython - to work with java language
+3. IronPython - to work with c# language
+4. Pypy - for more performance bcoz it have JIT compiler by default
+5. RubyPython - to work with ruby language
+6. AnacondaPython - to handle big data
+7. Stackless (Python for concurrency) - for multithreading
+
+
+
+PYTHON VERSIONS
+----------------
+1. Python 1.0 introduced in jan 1994
+2. Python 2.0 introduced in oct 2000
+3. Python 3.0 introduced in dec 2008
+
+
+
+RULES TO DEFINE IDENTIFIERS
+----------------------------
+1. Alphabet symbols (both upper and lower case), Digits (0 to 9), Underscore (_)
+2. Idenitfier should not start with digit
+3. Python is case-sensetive
+4. No length limit for python identifiers
+5. If identifier starts with _ indicates private
+6. If identifier starts with __ indicates strongly private
+7. Starts with __ and ends with __ symbol indicates it is language specific identifier
+
+
+
+RESERVED WORDS
+---------------
+1. 33 reserved words
+2. True, False, None
+3. and, or , not, is
+4. if, else, elif
+5. while, for, break, continue, return, in, yield
+6. try, except, finally, raise, assert
+7. import, from, as, class, def, pass, global, nonlocal, lambda, del, with
+8. import keyword  
+   keyword.kwlist()  # to print keyword list
+
+
+
+DATA TYPES
+-----------
+1. int => binary (0 and 1) 0b, decimal (base-10 0 to 9), octal (0 to 7) 0o, hexadecimal (0 to 9, a to f / A to F) 0x
+2. float
+3. complex => can't be converted to int or float using type casting
+4. bool
+5. str
+6. bytes => immutable
+7. bytearray => mutable
+8. range => immutable
+9. list => ordered, duplicates allowed, mutable
+10. tuple => ordered, duplicates allowed, immutable
+11. set => unordered, duplicates not allowed, mutable
+12. frozenset => unordered, duplicates not allowed, immutable
+13. dict => unordered, key duplicates not allowed but values can be duplicates, mutable
+14. None
+
+
+
+TYPE CASTING / TYPE COERSION
+-----------------------------
+1. int() => any other fundamental data type can be converted to int except complex and if it's a string then it should be compulsory base-10
+2. float() => any other fundamental data type can be converted to float except complex and if it's a string then it should be compulsory base-10
+3. complex() => there are two forms of type casting in complex:
+                1. complex(x) => here x will be the real part
+                2. complex(x, y) => here x will be the real part and y will be the imaginary part, if it's a string then 2nd argument will throw TypeError.
+4. bool() => for int and float type, 0 means False and all other non-zero value means True. for complex if both real and imaginary part is 0 then False. for string if arg is empty then False.
+5. str() => 
+
+
+
+
+INBUILT FUNCTIONS
+------------------
+1. print()
+2. type()
+3. id()
+
+
+
+ESCAPE CHARACTERS
+------------------
+1. \n
+2. \t
+3. \r
+4. \b
+5. \v
+6. \f
+7. \'
+8. \"
+9. \\
+
+
+
+TYPES OF OPERATORS
+-------------------
+1. Arithmetic Operators
+2. Relational Operators or Comparison Operators
+3. Logical Operators
+4. Bitwise Operators
+5. Assignment Operators
+6. Special Operators
+
+
+
+ARITHMETIC OPERATORS
+---------------------
+1. + ==> addition
+2. - ==> subtraction
+3. * ==> multiplication
+4. / ==> division returns float value only
+5. % ==> modulo
+6. // ==> floor division returns nearest float value if arguments are float and returns int value if arguments are int
+7. ** ==> exponent
+
+
+
+RELATIONAL OPERATORS
+---------------------
+1. >
+2. <
+3. >=
+4. <=
+5. ==
+6. !=
+
+
+
+LOGICAL OPERATORS
+------------------
+1. and ==> x and y if x evalutes to false then result is x otherwise returns y
+2. or ==> x or y if x evaluates to True then returns x otherwise return y
+3. not ==> it always returns boolean value
+* for booleans ==> boolean value
+  for non-boolean ==> 0 means False, non-zero means True, empty string means False
+
+
+
+BITWISE OPERATORS
+------------------
+1. & ==> if both bits are 1 then only 1 otherwise 0
+2. | ==> if atleast one bit is 1 then 1 otherwise 0
+3. ^ ==> (x-or / exclusive or)if both arguments are different then 1 otherwise 0
+4. ~ ==> (bitwise complement operator) 1 => 0 and 0 => 1
+5. << ==> (bitwise left shift) right hand side vacant cells fill with 0s
+6. >> ==> (bitwise right shift) left hand side vacant cells fill with sign bit i.e, +ve numbers = 0 and -ve numbers = 1
+* applicable only for int and boolean
+
+
+
+ASSIGNMENT OPERATORS
+---------------------
+1. =
+2. +=
+3. -=
+4. *=
+5. /=
+6. %=
+7. //=
+8. **=
+9. &=
+10. |=
+11. ^=
+12. >>=
+13. <<=
+
+
+
+SPECIAL OPERATORS
+------------------
+1. Identity Operators ==> is, is not
+2. Membership Operators ==> in, not in
+
+
+
+OPERATOR PRECEDENCE
+--------------------
+1. () ==> Paranthesis
+2. ** ==> exponential operator
+3. ~,- ==> unary operator
+4. *,/,%.//
+5. +,-
+6. <<,>>
+7. &
+8. ^
+9. |
+10. >,>=,<,<=,==,!= ==> relational operator
+11. =,+=,-=,*=.... ==> assignment operator
+12. is, is not ==> identity operator
+13. in, not in ==> membership operator
+14. not
+15. and
+16. or
+
+
+
+eval() ==> This function always take string type and evaluates to corresponding result.
+
+
+
+COMMAD LINE ARGUMENTS
+----------------------
+1. argv ==> takes a list of commands and index starts from python file itself. eg, python3 test.py 10 20 30 40, argv[0] = test.py
+
+
+
+OUTPUT FUNCTIONS
+-----------------
+1. sep attribute ==> takes a string value to use as a seperator between values eg, print(10,20,30, sep=',') = 10,20,30
+2. end attribute ==> takes a string value to use as a endline seperator
+3. formatted string ==>
+   i) %i ==> int type
+   ii) %d ==> int type
+   iii) %f ==> float
+   iv) %s ==> str type
+4. replacement operator ==> {} is used with .format
+
+
+
+FLOW CONTROL
+-------------
+3 types:
+
+1. Conditional statements/selection statements
+-----------------------------------------------
+1. if
+2. if-else
+3. if-elif-else
+4. if-elif
+
+2. Iterative statements
+------------------------
+1. for loop
+2. while
+
+3. Transfer statements
+-----------------------
+1. break
+2. continue
+3. pass
+
+
+
+STRING DATA TYPE METHODS
+-------------------------
+Index find
+-----------
+1. find(substr, beg, end) ==> it returns the index of substring in string and returns -1 if no such index exist.
+2. rfind(substr, beg, end) ==> returns last index where substring found and returns -1 if no such index exist.
+3. index(substr, beg, end) ==> same as find method but it raises an exception when substring not found.
+4. rindex(substr, beg, end) ==> same as index except it returns last index.
+5. count(substr, beg, end) ==> returns the number of occurrences of substring in the string.
+
+Changing case of strings
+-------------------------
+1. capitalize() ==> capitalizes the first letter of string.
+2. upper() ==> to convert to upper case.
+3. lower() ==> to convert to lower case.
+4. swapcase() ==> interchanging case of all letters in string.
+5. title() ==> first characters of all the words are capitalized.
+
+String manipulation
+--------------------
+1. center(width, fillchar) ==> returns a space-padded string with the original string centered to a total of width coulmns.
+2. lstrip() ==> removes beginning space from the string.
+3. rstrip() ==> removes end space from the string.
+4. strip() ==> removes beginning and end space from the string.
+5. replace(oldstring, newstring, max) ==> returns a copy of the string in which occurrence of old is replaced with new, optionally restricting the no. of replacements to max.
+6. split(seperator, num) ==>  returns list of substring and takes num argument optionally.
+7. rsplit(seperator, num) ==> same as split except it starts from reverse direction.
+8. join(sequence) ==> returns a string after joining string of sequence from tuple or list.
+
+Checking starting and ending part of the string
+------------------------------------------------
+1. startswith(str, beg, end) ==> returns true of false based on string matching.
+2. endswith(str, beg, end) ==> returns true or false based on string matching.
+
+Checking certain conditions
+----------------------------
+1. isalnum() ==> returns true or false after checking wheather the string consists of only digits and letters characters.
+2. isalpha() ==> returns true or false after checking wheather the string consists of only alphabetic characters.
+3. isdigit()
+4. isnumeric() ==> applicable on only unicode objects.
+5. islower()
+6. isupper()
+7. istitle()
+8. isspace()
+9. isdecimal() ==> applicable on only unicode objects.
+
+
+
+LIST DATA TYPE FUNCTIONS
+-------------------------
+1. len(list) ==> gives the total length of list.
+2. max(list) ==> returns item from the list with max value.
+3. min(list) ==> returns item from the list with min value.
+4. cmp(list1, list2) ==> compares elements of both list.
+5. list(seq) ==> converts a tuple into list.
+6. clear() ==> to clear all elements of the list.
+
+LIST DATA TYPE METHODS
+-----------------------
+1. count(obj) ==> returns count of how many times obj occurs in list.
+2. append(obj) ==> append object to list.
+3. index(obj) ==> returns the lowest index in the list that object appears.
+4. insert(index, element) ==> it doesn't returns anything but inserts the element at the specified index.if the specified index is greater than current max index than element will be inserted at last index and if it's less than 0 than it will be inserted at 1st position.
+5. extend(seq) ==> appends content of seq to list.
+6. remove(obj) ==> doesn't returns anything but removes the object from the list.
+7. pop(obj = list[-1]) ==> removes and returns last object or object from the list. obj is the optional parameter, index of the object to be removed.
+8. reverse() ==> doesn't returns anything but reverse the objects of the list.
+9. sort([func]) ==> doesn't returns any value but it changes from the original list.
+10. cmp(list1, list2) ==> works in python 2 not in python 3, for python 3 use (a>b)-(a<b) instead of cmp(a,b)
+
+LIST COMPREHENSIONS
+--------------------
+1. list = [expression for x in sequence if condition]
+
+
+
+TUPLE DATA TYPE FUNCTIONS
+--------------------------
+1. tuple(seq) ==> converts list into tuple.
+2. len(tuple)
+3. count(obj)
+4. index(obj)
+5. sorted(tuple) ==> returns sorted list.
+6. min(tuple)
+7. max(tuple)
+8. cmp(tuple1, tuple2)
+
+
+
+SET DATA TYPE METHODS
+----------------------
+* index and slice operator are not aplicable.
+1. add(obj) ==> adds the object in the set.
+2. update(sequence) ==> it's like extend method of list, it adds the sequence into the set.
+3. copy() ==> returns copy of set.
+4. pop() ==> removes and returns some random element.
+5. remove(obj) ==> doesn't returns any value and removes the object from the list.If specified object is not the set then KeyError will come.
+6. discard(obj) ==> doesn't returns any value and removes the object from the list if present, if not then ignored i.e, no error raised.
+7. clear() ==> to remove all elements from the set.
+
+SET MATHEMATICAL OPERATIONS
+----------------------------
+1. union() or | ==> returns a union of two sets which have all elements from both the sets.
+2. intersection() or & ==> returns a set which have elements which are present in both the sets.
+3. difference() or - ==> returns a set containing all the elements of 1st set but not 2nd set.
+4. symmetric_difference or ^ ==> returns a set that contains all items from both sets, except items that are present in both sets.
+5. difference_update() ==> removes the items that exist in both sets. its diffrent from difference() method, because the difference() returns a new set and difference_update() removes the unwanted items from the original set.
+6. intersection_update() ==> removes the unwanted items i.e, which are not present in both sets from the original set.
+7. symmetric_difference_update() ==>
+8. isdisjoint() ==> returns true if none of the items are present in both sets.
+9. issubset() ==> returns true if all items in the 1st set exists in the 2nd set.
+10. issuperset() ==> returns true if all items of 2nd set are present in 1st set.
+
+SET COMPREHENSIONS
+-------------------
+1. set = {expression for x in sequence if condition}
+
+
+
+DICTIONARY DATA TYPE METHODS
+-----------------------------
+* index and slice operator not applicable.
+1. has_key(key) ==> returns true if key present otherwise false, applicable only in python 2 not in python 3.
