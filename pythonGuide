@@ -412,4 +412,126 @@ SET COMPREHENSIONS
 DICTIONARY DATA TYPE METHODS
 -----------------------------
 * index and slice operator not applicable.
+* dict(list or set or tuple of tuples)
 1. has_key(key) ==> returns true if key present otherwise false, applicable only in python 2 not in python 3.
+2. len()
+3. clear() ==> to remove all key-value pairs from the dictionary.
+4. get(key, default=None) ==> returns a value for the given key. If key is not available then returns default value None.
+5. pop(key) ==> removes the entry associated with the key and returns the value. Takes atleast 1 argument.
+6. popitem() ==> remove and return random key-value.
+7. keys() ==> returns a list of all the available keys in the dictionary.
+8. values() ==> returns a list of all available values in the dictionary.
+9. items() ==> returns a list of key-value tuple pairs.
+10. copy() ==> returns a shallow copy of dictionary.
+11. setdefault(key, value) ==> if key already availabe then it returns that value otherwise set and returns the given value. value argument by default is None like get() method.
+12. update(dict2) ==> adds dictionary dict2's key-value pairs to 1st dict. this function does not return anything. Takes atmost 1 argument.
+13. fromkeyes(seq, value) ==> creates a new dictionary with keys from seq and values set to value, value by default is None.
+
+DICTIONARY COMPREHENSION
+-------------------------
+1. dict = {key:value expression for x in sequence if condition}
+
+
+
+FUNCTIONS
+----------
+
+TYPES OF ARGUMENTS
+-------------------
+1. positional
+2. keyword
+3. default
+4. variable length args ==> def xyz(*args). it's a tuple.
+5. keyword variable length args ==> def xyz(**kwargs). it's a dictionary.
+
+RECURSIVE FUNCTIONS
+--------------------
+1. A function that calls itself recursive functions.
+
+ANONYMOUS FUNCTIONS
+--------------------
+1. lambda input:expression
+
+FUNCTIONS EXPECTING ANOTHER FUNCTION AS ARGUMENTS
+--------------------------------------------------
+1. filter() ==> filter(function, sequence), this is used to filter out elements from the sequence based on true or false condition by using function.
+2. map() ==> map(function, sequence), for performing a functionality on every element of sequence map function is used.it can be applied on multiple sequence too but every sequence should have same number of elements if not equal then extra elements will be ignored.
+3. reduce() ==> reduce(function, sequence), is used to apply a particular function passed in its argument to all of the list elements.it takes first two elements of sequence and result obtained next it apply the same function to previous result and next element, this process is continued till no element left in sequence then the final result is printed.
+
+NESTED FUNCTIONS
+-----------------
+
+FUNCTION DECORATORS
+--------------------
+1. A decorator is a function which takes another function as input and gives a function as output with added functionality.
+2. To automatically call decorator then use @decor function.
+
+
+
+MODULES
+--------
+1. A group of functions and variables saved to a file.
+2. import module1 ==> importing single module
+3. import module1,module2,module3 ==> importing multiple module
+4. import module1 as m1 ==> aliasing the module
+5. from module1 import add ==> importing a function from module
+6. from module1 import add,x,product ==> importing multiple functions from module
+7. from module1 import * ==> import all functions from module
+8. from module1 import add as a ==> aliasing the imported function
+
+RELOADING THE MODULE
+---------------------
+1. for every module compiled file i.e, PYC file will be generated and saved in __pycache__
+2. from imp import reload
+
+SPECIAL VARIABLE __name__
+--------------------------
+1. if __name__ == __main__ then program is executed directly otherwise it is executed as a module from other program indirectly.
+
+RANDOM MODULE
+--------------
+1. random() ==> 0 to 1 => not inclusive
+2. randint(x,y) ==> int => inclusive
+3 uniform(x,y) ==> float => not inlcusive
+4. randrange(start, stop, step) ==>
+5. choice(sequence) ==> return a random object from any indexable sequence.
+
+
+
+TRY-EXCEPT-ELSE-FINALLY
+------------------------
+1. else block will be executed only when no exception in except block.
+2. finally block will execute always wheather exception raised or not raised, handled or not handled.
+3. with try block either except or finally block is compulsory.
+4. try-1, except-multiple, else-1, finally-1 blocks allowed in a chain.
+5. for else block except block must be there.
+6. finally without try is invalid.
+7. except without try is invalid.
+8. we can nest try-except-else-finally in try,except,else,finally blocks.
+
+
+
+TYPES OF EXCEPTIONS
+--------------------
+1. Predefined exceptions/ Inbuilt exceptions
+2. User defined exceptions
+
+Predefined exceptions/ Inbuilt exceptions
+------------------------------------------
+1. The exceptions which are raised automatically by python whenever a particular event occurs. eg, ZeroDivisonError, ValueError etc
+
+User defined exceptions
+------------------------
+1. Make a class to define the exception then raise it. 
+   eg, class TooYoungException(Exception):
+           def __init__(self, arg):
+               self.msg = arg
+
+       input(int("Enter your age: "))
+       if age > 60:
+           raise TooYoungException("Too young to get married")
+
+
+
+LOGGING and DEBUGGING
+----------------------
