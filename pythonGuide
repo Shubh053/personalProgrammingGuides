@@ -535,3 +535,462 @@ User defined exceptions
 
 LOGGING and DEBUGGING
 ----------------------
+
+LOGGING LEVELS
+---------------
+* If we don't set logging level by default critical,error,warning will be set.
+1. CRITICAL ==> 50
+2. ERROR ==> 40
+3. WARNING ==> 30
+4. INFO ==> 20
+5. DEBUG ==> 10
+6. NOTSET ==> 0
+
+HOW TO IMPLEMENT LOGGING
+-------------------------
+1. name of the file
+2. level messages
+3. to define above two steps we have to use basicConfig() function of logging module.
+4. logging.basicConfig(filename='log.txt', level=logging.WARNING)
+
+
+
+PICKLING AND UNPICKLING
+------------------------
+1. The method of writing state of an object to a file is called pickling.
+2. The method of reading state of an object from a file is called unpickling.
+3. use pickle module
+4. for pickling use pickle.dump(object, file) function.
+5. for unpickling use pickle.load(file) function.
+
+
+
+OOP'S CONCEPT
+--------------
+1. Class ==> Blueprint/Template which contains methods.
+2. Object ==> are the instance of the class.
+3. Reference variable ==> The variable that refers to the object is called reference variable of that object.
+4. To print document string of a class use print(class.__doc__)
+
+SELF VARIABLE
+--------------
+1. self is a reference variable which always pointing to current object. To access current object within class we use self variable.
+2. For every instance method and constructor first argument should be self.
+3. PVM is responsible for value for self argument and we are not needed to provide explicitly.
+4. self is not a keyword.
+5. Instead of self we can use any name but recommended to use self.
+
+CONSTRUCTOR
+------------
+1. Name of the constructor is always fixed as __init__().
+2. Whenever we are creating object constructor will be executed automatically.
+3. We are not required to call explicitly.
+4. The main objective: to decalre and initialize variables.
+5. For every object, constructor will be executed only once.
+
+METHOD VS CONSTRUCTOR
+----------------------
+METHOD
+-------
+1. Name can be anything.
+2. Method will be executed if we call.
+3. Per object method can be called any number of times.
+4. Used for logics.
+
+CONSTRUCTOR
+------------
+1. Name must be __init__().
+2. Constructor executed automatically when creating object.
+3. Per object only once.
+4. To declare and initialize instance variables.
+
+
+TYPES OF VARIABLES IN PYTHON CLASS
+-----------------------------------
+1. Instance/Object level variables
+2. Static/Class level variables
+3. Local/Method variables
+
+INSTANCE VARIABLES
+-------------------
+1. If the value of a varible varies from object to object such type of variables are called instance variable.
+2. For every object a seperate copy of instance variable will be created.
+3. To declare instance variable:
+   (i) Inside construtor by using self.
+   (ii) Inside instance method by using self.
+   (iii) From outside of the class by using object reference.
+4. How to access instance variable:
+   (i) Within the class by using self.
+   (ii) From outside of the class by using object reference.
+5. How to delete instance variable:
+   (i) Within the class use del self.variablename
+   (ii) Outside of the class by using del objectreference.variablename
+
+STATIC VARIABLE
+----------------
+1. For all objects a single copy is maintained at class level.
+2. To declare static variable:
+   (i) Directly inside the class.
+   (ii) Inside constructor method by using classname.
+   (iii) Inside instance method by using classname.
+   (iv) Inside class method by using cls variable or classname.
+   (v) Inside static method by using classname.
+   (vi) From oustide of class by using classname.
+3. How to access static variable:
+   (i) Within the class we can access by using classname or self variable.
+   (ii) Inside classmethod we can also use cls variable.
+   (iii) From outside of class we can access only by using classname or by object reference.
+4. How to modify static variable:
+   (i) Within the class we should use either classname or cls variable.
+   (ii) From outside of the class use classname.
+5. How to delete static variable:
+   (i) Within the class we should use either classname or cls variable.
+   (ii) From outside of the class use classname.
+
+LOCAL VARIABLE
+---------------
+1. Used for temporary operations inside a method.
+2. We should not use self,classname,cls.
+3. Cannot be accessed from oustide of the method where it is defined.
+
+
+TYPES OF METHODS IN PYTHON CLASS
+---------------------------------
+1. Instance/Object related methods
+2. Class level method ==> @classmethod decorator is used.
+3. Static ==> @staticmethod decorator is used.
+
+INSTANCE METHODS
+-----------------
+1. Inside a method if atleast one instance variable is used.
+2. 1st argument must be self variable.
+3. Within the class we can call by using self.
+4. Outside of class we can call by object reference.
+
+SETTER AND GETTER METHODS FOR INSTANCE METHOD
+----------------------------------------------
+1. Used for data security.
+2. def setVariableName(self,variableName):
+       #Validation stuff can be used here
+       self.variableName=variableName
+  
+   objectreference.setVariableName(values)
+3. def getVariableName(self):
+       #Validation stuff can be used here
+       return self.variableName
+
+   objectreference.getVariableName()
+
+CLASS METHOD
+-------------
+1. Inside the method if we are using only static variable then we should declare that as class method.
+2. To declare classmethod compulsory @classmethod decorator is used.
+3. First argument is cls which is reference variable current class object and by using that we can access static variable.
+4. Inside classmethod we can access only static variable not instance variable.
+5. We can call classmethod either by using object reference or by classname directly, but recommended to use classname.
+
+STATIC METHOD
+--------------
+1. Just general utility method.
+2. If we are not using any instance variable and any static variable inside method body, to define such type of general utility methods we should go for staticmethod.
+3. To declare staticmethod optonally use @staticmethod decorator.
+4. We can call staticmethod either by using object reference or by classname directly, but recommended to use classname.
+
+
+INNER CLASSES
+--------------
+1. The class which is declared inside another class is called inner classes.
+2. Without existing one type of object if there is no chance of existing another type of object then we should go for inner classes.
+3. To create an object from inner class use reference of outer class.
+   eg, o = Outer()
+       i = o.Inner()
+
+
+GARBAGE COLLECTION
+-------------------
+1. Based on our requirement we can enable or disable garbage collection in python.
+2. to enable or disable garbage collector gc module is used.
+3. gc.isenabled() checks for gc is enabled or disabled.
+4. gc.disable() to disable gc.
+5. gc.enable() to enable gc.
+6. gc calls destructor method(__del__(self):) automatically to close db connection,network connection etc before destroying useless object.
+7. To get total reference of an object at that point of time use getrefcount() method of sys module, eg. t1 = Test()
+            t2 = t1
+            t3 = t2
+            t4 = t3
+            print(sys.getrefcount(t1)) # output = 5 #t1 t2 t3 t4 and self
+
+
+POLYMORPHISM
+-------------
+1. Basic meaning of polymorphism means one name but mulitple forms.
+
+
+OPERATOR OVERLOADING
+---------------------
+1. Operator overloading concept internally implemented by using magic method.
+2. + ==> __add__(self,other): return self.variable + other.variable
+3. - ==> __sub__(self,other): return self.variable - other.variable
+4. * ==> __mul__(self,other): return self.variable * other.variable
+5. / ==> __div__(self,other): return self.variable / other.variable
+6. // ==> __floordiv__(self,other)
+7. % ==> __mod__(self,other)
+8. ** ==> __pow__(self,other)
+9. += ==> __iadd__(self,other)
+10. -= ==> __isub__(self,other)
+11. *= ==> __imul__(self,other)
+12. /= ==> __idiv__(self,other)
+13. //= ==> __ifloordiv__(self,other)
+14. %= ==> __imod__(self,other)
+15. **= ==> __ipow__(self,other)
+16. > ==> __gt__(self,other)
+17. < ==> __lt__(self,other)
+18. >= ==> __ge__(self,other)
+19. <= ==> __le__(self,other)
+20. == ==> __eq__(self,other)
+21. != ==> __ne__(self,other)
+22. To get meaningful representation of instance of object use def __str__(self) magic method.THis method gets called when printing any object reference/object.
+
+METHOD OVERLOADING
+-------------------
+1. Method overloading is when two methods of same name but different argument types, that's why python does not support method overloading bcoz in python we don't declare types.
+
+
+COMPOSITION VS AGGREGRATION
+----------------------------
+1. Both have HAS-A relationship.
+2. Composition is a strong association and aggregration is a weak association.
+3. Relation between class and instance method or object is example of composition and relation between class and static variable is example of aggregration.
+
+
+TYPES OF INHERITANCE
+---------------------
+1. Single Inheritance
+2. Multi Level Inheritance
+3. Hierarchical Inheritance
+4. Multiple Inheritance
+5. Hybrid Inheritance
+6. Cyclic Inheritance # Python doesn't support
+
+SINGLE INHERITANCE
+-------------------
+1. One parent and One child.
+
+MULTILEVEL INHERITANCE
+-----------------------
+1. Single inheritance at multi level.
+
+HIERARCHICAL INHERITANCE
+-------------------------
+1. One parent but multiple childs at same level.
+
+MULTIPLE INHERITANCE
+---------------------
+1. Multiple parents but single child.
+2. Multiple inheritance works on based on order of parent class like C(P1,P2) then P1 method is considered if same name, C(P2,P1) then P2 method is considered if same name.
+
+
+METHOD RESOLUTION ORDER(MRO) ALGORITHM FOR INHERITANCE
+-------------------------------------------------------
+1. use mro() method to get method resolution order of a class.
+2. eg, class A(Object): pass          mro(A) = A,O
+       class B(Object): pass          mro(B) = B,O
+       class C(Object): pass          mro(C) = C,O
+       class X(A,B): pass             mro(X) = X,A,B,O
+       class Y(B,C): pass             mro(Y) = Y,B,C,O
+       class P(X,Y,C): pass           mro(P) = P,X,Y,C,A,B,O
+
+C3 ALGORITHM
+-------------
+       mro(P) = P + Merge(mro(X),mro(Y),mro(C),XYC)
+       mro(P) = P + Merge(XABO,YBCO,CO,XYC)
+1. First element is considered as head and rest all is considered tail, eg. in XABO, X is the head and all other element is the tail.
+2. If head element of first list not present in the tail part of any other list then consider that element in the result and remove that element from all the lists.
+       mro(P) = P + X + Merge(ABO,YBCO,CO,YC)
+       mro(P) = P + x + A + Merge(BO,YBCO,CO,YC)
+3. If head element is present in tail part of other list then we skip to next list.
+       mro(P) = P + X + A + Y + Merge(BO,BCO,CO,C)
+4. Then we again repeat from the first list.
+       mro(P) = P + X + A + Y + B + Merge(O,CO,CO,C)
+       mro(P) = P + X + A + Y + B + C + Merge(O,O,O)
+       mro(P) = P + X + A + Y + B + C + O
+
+
+SUPER() METHOD
+---------------
+1. From child class to call parent class members.
+2. eg, class Person:
+    	   def __init__(self,name,age):
+               self.name = name
+               self.age = age
+           def display(self):
+               print('Name:',self.name)
+               print('Age:',self.age)
+
+	class Student(Person):
+            def __init__(self,name,age,rollno,marks):
+                super().__init__(name,age)
+                self.rollno = rollno
+                self.marks = marks
+            def display(self):
+                super().display()
+                print('Rollno:',self.rollno)
+                print('Marks:',self.marks)
+3. To call a particular parent class method by using super():
+   (i) parentclassname.methodname(self)
+   (ii) super(parentclassname,self).methodname()
+4. From child class by using super() we cannot call parent class instance variables, we should use self only.
+5. From child class by using super() method we can call parent class static variables.
+
+
+
+REGULAR EXPRESSIONS
+--------------------
+1. re module is used for regular expressions.
+2. To create a reg exp object use .compile() function.
+3. Use finditer() function to create a iterable object to search pattern in.
+4. start() ==> start index of the match.
+5. end() ==> end+1 index of the match.
+6. group() ==> returns one or more subgroups of the match.
+7. groups() ==> return a tuple containing all the subgroups of the match.
+8. groupdict() ==> returns a dictionary containing all the named subgroups of the match, keyed by the subgroup name.
+9. ^a ==> it will check wheather the given target string starts with a or not.
+10. a$ ==> it will check wheather the given target string ends with a or not.
+11. re.IGNORECASE ==> use this attribute as a argument in functions of re module to ignore case-sensetive to match.
+
+CHARACTER CLASSES
+------------------
+1. [abc] ==> either a or b or c
+2. [^abc] ==> except a and b and c
+3. [a-z] ==> any lower case alphabet symbols
+4. [A-Z] ==> any upper case alphabet symbols
+5. [a-zA-Z] ==> any alphabet symbols
+6. [0-9] ==> any digit
+7. [a-zA-Z0-9] ==> any alphanumeric character
+8. [^a-zA-Z0-9] ==> any special character symbol
+
+PREDEFINED CHARACTER CLASSES
+-----------------------------
+1. \s ==> space character
+2. \S ==> except space character
+3. \d ==> any digit
+4. \D ==> except digits
+5. \w ==> any word character
+6. \W ==> any character except word character(means special character)
+7. . ==> every character
+
+QUANTIFIERS
+------------
+1. The number of occurrences.
+2. a ==> exactly one 'a'
+3. a+ ==> atleast one 'a'
+4. a* ==> any number of 'a's including zero number also
+5. a? ==> atmost one 'a'
+6. a{n} ==> exactly n number of a's
+7. a{m,n} ==> minimum m number of a's and maximum n number of a's
+
+IMPORTANT FUNCTIONS OF RE MODULE
+---------------------------------
+1. match() ==> to check the given pattern match at the beginning of the target string or not,if yes then returns the match object if not then returns None.
+2. fullmatch() ==> to check the given pattern match the complete target string or not, if yes then returns the match object if not then returns None.
+3. search() ==> to search the given pattern in the target string, returns match object of the first occurance if not then returns None.
+4. findall() ==> same as search but finds all occurances of the match string and returns a list.
+5. finditer() ==> returns iterator of matched object.
+6. sub() ==> substitution or replacement(re.sub(regex,replacement,targetstring))
+7. subn() ==> returns tuple with (replaced string,number of replacements)
+8. split() ==> to split the target string according to the pattern. Note: to split with '.' use '\.' or '[.]' bcoz alone '.' will be considered as quantifier for every character.
+9. compile()
+
+
+
+SHALLOW COPY AND DEEP COPY
+---------------------------
+
+SHALLOW COPY- If the original object contains any reference to mutable objects, just duplicate  reference variables will be created pointing to old contained objects, but not duplicate objects creation.
+If original object does not contain any nested object then shallow copy is recommended.
+
+DEEP COPY- All duplicate objects will be created even for nested mutable objects.
+If original object contain any nested object then deep copy is recommended.
+
+
+
+FILE HANDLING
+--------------
+1. open(filename,access mode) to open a file and perform a specific action.
+2. close() to close the file after operations.
+3. file.write(str)
+4. file.writelines(list of lines)
+5. file.read() ==> to read total data from the file.
+6. file.read(n) ==> to read n characters from the file.
+7. file.readline() ==> to read only one line.
+8. file.readlines() ==> to read all lines into a list.
+9. with statement ==> to automatically close the file after operations.
+eg, with open('abc.txt','w') as f:
+       ......
+       ......
+10. Use os.rename(current_file_name, new_file_name) method to rename file.
+11. Use os.remove(file_name) method to delete the file.  
+
+ACCESS MODES
+-------------
+1. r ==> opens a file for reading only.The file pointer is placed at the beginning of the file.This is the default mode.
+2. w ==> opens a file for writing only,overwrited the file if the file exists.If the file doesn't exist then creates a new file for writing.
+3. a ==> opens a file for appending.The file pointer is placed at the end of the file and if the file doesn't exist then creates a new file to write.
+4. r+ ==> opnes the file for both reading and writing.The file pointer is placed at the beginning of the file.
+5. w+ ==> opens a file for both reading and writing.If the file doesn't exist then it creates a file to write otherwise overwrites it.
+6. a+ ==> opens a file for both appending and reading.The file pointer is at the end of the file if file exists.If the file doesn't exist then it creates a new file for reading and writing.
+7. x(exclusive mode) ==> It is for write operation.Compulsory file should not be available.
+8. rb ==> opens a file for reading only in the binary format.
+9. rb+ ==> opens a file for both reading and writing in binary format.
+10. wb ==> opens a file for writing only in binary format.
+11. wb+ ==> opens a file for both reading and writing in binary format.
+12. ab ==> opens a file for appending in binary format.
+13. ab+ ==> opens a file for both appending and reading in binary format.
+14. xb ==> opens a file for write operation in binary format.
+
+FILE OBJECT ATTRIBUTES AND METHODS
+-----------------------------------
+1. file.closed ==> returns True if file is closed, False otherwise.
+2. file.mode ==> returns access mode with which file was opened.
+3. file.name ==> returns name of the file.
+4. file.softcase ==> returns False if space explicitly required with print, True otherwise.
+5. file.readable() ==> returns True if file is poosible to read otherwise False
+6. file.writable() ==> returns True if file is poosible to write otherwise False.
+
+
+
+MULTI THREADING
+----------------
+1. threading module is used.
+2. current_thread() ==> this function returns current executing thread object.
+3. active_thread() ==> returns the number of thread objects that are active.
+4. enumerate() ==> returns a list of all current executing threads.
+5. isAlive() ==> returns True or Flase based on thread is alive or not.
+6. join(time) ==> to hold/wait the thread until some other threads are completed. time argument is optional.
+7. ident ==> is a implicit variable to get the thread identification number.
+
+3 WAYS TO DEFINE OWN THREAD
+----------------------------
+1. Creating a Thread without using any class.
+2. Creating a Thread by extending Thread class.
+3. Creating a Thread without extending Thread class.
+
+SETTING AND GETTING THREAD NAME
+--------------------------------
+1. t.getName()
+2. t.setName(name)
+
+DAEMON THREADS
+---------------
+1. Sometimes threads may run in the background, these threads are called daemon threads.
+2. The main purpose is to provide support for the non-daemon threads(like MainThread).
+3. eg: Garbage Collector
+4. isDaemon() | t.daemon ==> to check the thread is daemon or not.
+5. setDaemon(bool) ==> this method is used to set the thread to daemon thread before starting the thread.
+6. Whenever last non-daemon thread terminates automatically all daemon threads will be terminated we are not required to terminate explicitly.
+
+
+
+GENERATORS
+-----------
+1. It is used to generate a sequence of values.
